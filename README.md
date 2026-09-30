@@ -1,16 +1,110 @@
-# React + Vite
+# NGO Connect
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+NGO Connect is a full-stack MERN web application designed to connect volunteers with NGOs and simplify event management, volunteer registration, attendance tracking, and certificate generation.
 
-Currently, two official plugins are available:
+The platform provides separate functionality for volunteers and coordinators, allowing them to manage and participate in NGO events through a centralized system.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Volunteer
 
-## Expanding the ESLint configuration
+- User registration and login
+- JWT-based authentication
+- Browse published events
+- Register for events
+- View registered events
+- View personal profile
+- View earned certificates
+- Print/download certificates
+- Certificate verification using a unique certificate ID
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Coordinator
+
+- Coordinator login
+- Coordinator dashboard
+- Create NGO events
+- Edit events
+- Delete events
+- View coordinator's own events
+- View registered volunteers
+- Approve or reject volunteer registrations
+- Mark volunteer attendance as Present or Absent
+- Generate certificates for eligible volunteers
+
+### Certificate System
+
+Certificates are generated only when:
+
+1. The volunteer's registration is approved
+2. The volunteer is marked as present
+
+Each certificate receives a unique certificate ID.
+
+The certificate can then be viewed and printed/downloaded by the volunteer.
+
+---
+
+## Technology Stack
+
+### Frontend
+
+- React
+- Vite
+- React Router
+- Tailwind CSS
+- JavaScript
+
+### Backend
+
+- Node.js
+- Express.js
+- REST API
+- JWT Authentication
+- bcrypt.js
+
+### Database
+
+- MongoDB
+- MongoDB Atlas
+- Mongoose
+
+---
+
+## User Roles
+
+### Volunteer
+
+Volunteers can discover NGO events, register for events, track their registrations, and receive certificates for participating in events.
+
+### Coordinator
+
+Coordinators can create and manage their NGO events, manage volunteer registrations, record attendance, and generate certificates.
+
+---
+
+## Application Workflow
+
+### Volunteer Workflow
+
+```text
+Register / Login
+      ↓
+Browse Events
+      ↓
+Register for Event
+      ↓
+Coordinator Reviews Registration
+      ↓
+Registration Approved
+      ↓
+Attend Event
+      ↓
+Coordinator Marks Attendance
+      ↓
+Attendance = Present
+      ↓
+Certificate Generated
+      ↓
+Volunteer Views / Downloads Certificate

@@ -5,6 +5,7 @@ const {
   getMyRegistrations,
   getEventRegistrations,
   updateRegistrationStatus,
+  markAttendance,
 } = require("../controllers/registrationController");
 
 const {
@@ -14,6 +15,7 @@ const {
 
 const router = express.Router();
 
+// Volunteer registers for an event
 router.post(
   "/events/:eventId",
   protect,
@@ -21,6 +23,7 @@ router.post(
   registerForEvent
 );
 
+// Volunteer views their registrations
 router.get(
   "/my",
   protect,
@@ -28,6 +31,7 @@ router.get(
   getMyRegistrations
 );
 
+// Coordinator views registrations for their event
 router.get(
   "/event/:eventId",
   protect,
@@ -35,11 +39,20 @@ router.get(
   getEventRegistrations
 );
 
+// Coordinator approves/rejects registration
 router.patch(
-  "/:registrationId/status",
+  "/:id/status",
   protect,
   authorize("coordinator"),
   updateRegistrationStatus
+);
+
+// Coordinator marks attendance
+router.patch(
+  "/:id/attendance",
+  protect,
+  authorize("coordinator"),
+  markAttendance
 );
 
 module.exports = router;

@@ -21,8 +21,7 @@ router.get("/", getEvents);
 
 // Only coordinators can view their own events
 // IMPORTANT: This must come before /:id
-router.get(
-  "/my",
+router.get("/my",
   protect,
   authorize("coordinator"),
   getMyEvents

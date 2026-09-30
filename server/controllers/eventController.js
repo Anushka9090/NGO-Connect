@@ -1,6 +1,6 @@
 const Event = require("../models/Event");
 
-// Create an event
+
 const createEvent = async (req, res) => {
   try {
     const {

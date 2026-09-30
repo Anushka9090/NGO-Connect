@@ -13,20 +13,13 @@ const {
 
 const router = express.Router();
 
-// =========================
-// AUTH
-// =========================
 
 router.post("/register", register);
 
 router.post("/login", login);
 
 
-// =========================
-// PROFILE
-// =========================
 
-// Get current logged-in user
 router.get("/me", protect, (req, res) => {
   res.json({
     success: true,
@@ -35,24 +28,13 @@ router.get("/me", protect, (req, res) => {
   });
 });
 
-// Update current user's profile
-router.patch(
-  "/profile",
-  protect,
-  updateProfile
-);
+
+router.patch("/profile",protect,updateProfile);
 
 
-// =========================
-// TEST ROUTES
-// =========================
 
-// Volunteer-only test route
 router.get(
-  "/volunteer-test",
-  protect,
-  authorize("volunteer"),
-  (req, res) => {
+  "/volunteer-test",protect,authorize("volunteer"),(req, res) => {
     res.json({
       success: true,
       message: "Volunteer access granted",

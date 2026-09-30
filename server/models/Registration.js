@@ -16,16 +16,19 @@ const registrationSchema = new mongoose.Schema(
 
     status: {
       type: String,
-      enum: ["pending", "approved", "rejected", "completed", "cancelled"],
+      enum: ["pending", "approved", "rejected"],
       default: "pending",
     },
+
+    attendance: {
+      type: String,
+      enum: ["present", "absent", "not_marked"],
+      default: "not_marked",
+    },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-// Prevent the same volunteer from registering twice
 registrationSchema.index(
   { event: 1, volunteer: 1 },
   { unique: true }

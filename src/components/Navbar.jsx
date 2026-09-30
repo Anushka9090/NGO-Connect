@@ -52,6 +52,7 @@ function Navbar() {
         {/* Main Navigation */}
         <div className="hidden items-center gap-1 md:flex">
 
+          {/* Home */}
           <Link
             to="/"
             className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-800"
@@ -59,14 +60,17 @@ function Navbar() {
             Home
           </Link>
 
-          <Link
-            to="/events"
-            className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-800"
-          >
-            Events
-          </Link>
+          {/* Events - Volunteer Only */}
+          {user?.role === "volunteer" && (
+            <Link
+              to="/events"
+              className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-800"
+            >
+              Events
+            </Link>
+          )}
 
-          {/* Logged-in dashboard */}
+          {/* Dashboard */}
           {user && (
             <Link
               to={dashboardPath}
@@ -76,17 +80,27 @@ function Navbar() {
             </Link>
           )}
 
-          {/* Volunteer navigation */}
+          {/* Volunteer Navigation */}
           {user?.role === "volunteer" && (
-            <Link
-              to="/my-registrations"
-              className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-800"
-            >
-              My Registrations
-            </Link>
+            <>
+              <Link
+                to="/my-registrations"
+                className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-800"
+              >
+                My Registrations
+              </Link>
+
+              {/* My Certificates */}
+              <Link
+                to="/certificates"
+                className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-all duration-200 hover:bg-emerald-50 hover:text-emerald-800"
+              >
+                My Certificates
+              </Link>
+            </>
           )}
 
-          {/* Coordinator / Admin navigation */}
+          {/* Coordinator / Admin Navigation */}
           {isCoordinator && (
             <Link
               to="/coordinator/events"

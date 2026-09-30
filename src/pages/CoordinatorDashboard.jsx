@@ -116,7 +116,7 @@ function CoordinatorDashboard() {
   return (
     <div className="min-h-screen bg-[#f4faf7]">
 
-     
+      {/* Hero Section */}
       <section className="border-b border-emerald-900/10 bg-gradient-to-br from-[#effbf5] via-white to-[#e8f8f1]">
         <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
 
@@ -137,7 +137,6 @@ function CoordinatorDashboard() {
               </p>
             </div>
 
-          
             <Link
               to="/coordinator/events/create"
               className="inline-flex w-fit items-center justify-center rounded-full bg-emerald-700 px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-emerald-800 hover:shadow-lg"
@@ -150,6 +149,8 @@ function CoordinatorDashboard() {
       </section>
 
       <main className="mx-auto max-w-7xl px-6 py-10 lg:px-8">
+
+        {/* Error */}
         {error && (
           <div className="mb-8 rounded-2xl border border-red-200 bg-red-50 p-5">
             <p className="font-medium text-red-700">
@@ -158,7 +159,7 @@ function CoordinatorDashboard() {
           </div>
         )}
 
-
+        {/* Overview */}
         <section>
 
           <div className="mb-5">
@@ -171,8 +172,9 @@ function CoordinatorDashboard() {
             </h2>
           </div>
 
-
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+            {/* My Events */}
             <div className="rounded-2xl border border-emerald-900/10 bg-white p-6 shadow-[0_8px_30px_rgba(6,45,36,0.05)] transition hover:-translate-y-1 hover:shadow-[0_14px_35px_rgba(6,45,36,0.08)]">
               <div className="flex items-center justify-between">
                 <p className="text-sm font-medium text-slate-500">
@@ -193,10 +195,9 @@ function CoordinatorDashboard() {
               </p>
             </div>
 
-
+            {/* Pending */}
             <div className="rounded-2xl border border-emerald-900/10 bg-white p-6 shadow-[0_8px_30px_rgba(6,45,36,0.05)] transition hover:-translate-y-1 hover:shadow-[0_14px_35px_rgba(6,45,36,0.08)]">
               <div className="flex items-center justify-between">
-
                 <p className="text-sm font-medium text-slate-500">
                   Pending
                 </p>
@@ -215,8 +216,7 @@ function CoordinatorDashboard() {
               </p>
             </div>
 
-
-
+            {/* Approved */}
             <div className="rounded-2xl border border-emerald-900/10 bg-white p-6 shadow-[0_8px_30px_rgba(6,45,36,0.05)] transition hover:-translate-y-1 hover:shadow-[0_14px_35px_rgba(6,45,36,0.08)]">
               <div className="flex items-center justify-between">
                 <p className="text-sm font-medium text-slate-500">
@@ -237,7 +237,7 @@ function CoordinatorDashboard() {
               </p>
             </div>
 
-
+            {/* Rejected */}
             <div className="rounded-2xl border border-emerald-900/10 bg-white p-6 shadow-[0_8px_30px_rgba(6,45,36,0.05)] transition hover:-translate-y-1 hover:shadow-[0_14px_35px_rgba(6,45,36,0.08)]">
               <div className="flex items-center justify-between">
                 <p className="text-sm font-medium text-slate-500">
@@ -257,12 +257,15 @@ function CoordinatorDashboard() {
                 Rejected registrations
               </p>
             </div>
+
           </div>
         </section>
 
-
+        {/* My Events */}
         <section className="mt-12">
+
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
                 Event management
@@ -287,7 +290,9 @@ function CoordinatorDashboard() {
           </div>
 
           {events.length === 0 ? (
+
             <div className="mt-7 rounded-3xl border border-dashed border-emerald-900/20 bg-white p-12 text-center shadow-sm">
+
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-50 text-3xl">
                 📅
               </div>
@@ -309,13 +314,19 @@ function CoordinatorDashboard() {
               </Link>
 
             </div>
+
           ) : (
+
             <div className="mt-7 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
               {events.map((event) => (
+
                 <div
                   key={event._id}
                   className="group flex flex-col rounded-3xl border border-emerald-900/10 bg-white p-6 shadow-[0_8px_30px_rgba(6,45,36,0.05)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(6,45,36,0.09)]"
                 >
+
+                  {/* Category */}
                   {event.category && (
                     <div>
                       <span className="inline-flex rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800">
@@ -324,20 +335,20 @@ function CoordinatorDashboard() {
                     </div>
                   )}
 
+                  {/* Title */}
                   <h3 className="mt-4 text-xl font-bold leading-snug text-emerald-950">
                     {event.title}
                   </h3>
 
-
-                  {/* DESCRIPTION */}
+                  {/* Description */}
                   <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600">
                     {event.description}
                   </p>
 
-
-                  {/* DETAILS */}
+                  {/* Details */}
                   <div className="mt-5 space-y-3 border-t border-slate-100 pt-5">
 
+                    {/* Date */}
                     <div className="flex items-start gap-3">
 
                       <span className="text-base">
@@ -360,7 +371,7 @@ function CoordinatorDashboard() {
 
                     </div>
 
-
+                    {/* Location */}
                     <div className="flex items-start gap-3">
 
                       <span className="text-base">
@@ -373,13 +384,14 @@ function CoordinatorDashboard() {
                         </p>
 
                         <p className="text-sm font-medium text-slate-700">
-                          {event.location || "Location not available"}
+                          {event.location ||
+                            "Location not available"}
                         </p>
                       </div>
 
                     </div>
 
-
+                    {/* Capacity */}
                     <div className="flex items-start gap-3">
 
                       <span className="text-base">
@@ -395,11 +407,12 @@ function CoordinatorDashboard() {
                           {event.capacity || 0} volunteers
                         </p>
                       </div>
+
                     </div>
+
                   </div>
 
-
-                  {/* MANAGE EVENT */}
+                  {/* Manage Event */}
                   <div className="mt-6 border-t border-slate-100 pt-5">
 
                     <Link
@@ -408,14 +421,20 @@ function CoordinatorDashboard() {
                     >
                       Manage Event
                     </Link>
+
                   </div>
+
                 </div>
+
               ))}
+
             </div>
 
           )}
+
         </section>
 
+        {/* Quick Access */}
         <section className="mt-12 rounded-3xl bg-emerald-950 p-7 text-white shadow-[0_15px_45px_rgba(6,45,36,0.15)] sm:p-9">
 
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-300">
@@ -431,10 +450,9 @@ function CoordinatorDashboard() {
             events.
           </p>
 
-
           <div className="mt-7 grid gap-4 sm:grid-cols-2">
 
-            {/* CREATE EVENT */}
+            {/* Create Event */}
             <Link
               to="/coordinator/events/create"
               className="rounded-2xl bg-white p-6 text-emerald-950 transition hover:-translate-y-1 hover:bg-emerald-50"
@@ -456,12 +474,12 @@ function CoordinatorDashboard() {
               <span className="mt-5 inline-block text-sm font-semibold text-emerald-700">
                 Create an event →
               </span>
+
             </Link>
 
-
-            {/* MANAGE EVENTS */}
+            {/* Manage Events */}
             <Link
-              to="/coordinator/dashboard"
+              to="/coordinator/events"
               className="rounded-2xl bg-white p-6 text-emerald-950 transition hover:-translate-y-1 hover:bg-emerald-50"
             >
 
@@ -481,9 +499,12 @@ function CoordinatorDashboard() {
               <span className="mt-5 inline-block text-sm font-semibold text-emerald-700">
                 Manage events →
               </span>
+
             </Link>
+
           </div>
         </section>
+
       </main>
     </div>
   );

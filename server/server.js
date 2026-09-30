@@ -3,6 +3,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const eventRoutes = require("./routes/eventRoutes");
 const registrationRoutes = require("./routes/registrationRoutes");
+const certificateRoutes = require("./routes/certificateRoutes");
 
 dotenv.config();
 console.log("JWT_SECRET loaded:", !!process.env.JWT_SECRET);
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use("/api/events", eventRoutes);
 app.use("/api/registrations", registrationRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/certificates", certificateRoutes);
 
 app.get("/", (req, res) => {
   res.json({

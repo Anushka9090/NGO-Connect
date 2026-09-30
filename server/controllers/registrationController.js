@@ -153,9 +153,59 @@ const updateRegistrationStatus = async (req, res) => {
   }
 };
 
+const markAttendance = async (req, res) => {
+  try {
+    const { attendance } = req.body;
+
+    if (!["present", "absent"].includes(attendance)) {
+      return res.status(400).json({
+        message: "Attendance must be present or absent.",
+      });
+    }
+
+    const registration = await Registration.findById(req.params.id).populate(
+      "event"
+    );
+
+    if (!registration) {
+      return res.status(404).json({
+        message: "Registration not found.",
+      });
+    }
+
+    if (registration.event.createdBy.toString() !== req.user._id.toString()) {
+      return res.status(403).json({
+        message: "You are not authorized to mark attendance for this event.",
+      });
+    }
+
+    if (registration.status !== "approved") {
+      return res.status(400).json({
+        message: "Attendance can only be marked for approved volunteers.",
+      });
+    }
+
+    registration.attendance = attendance;
+
+    await registration.save();
+
+    res.status(200).json({
+      message: "Attendance marked successfully.",
+      registration,
+    });
+  } catch (error) {
+    console.error("Mark attendance error:", error);
+
+    res.status(500).json({
+      message: "Server error while marking attendance.",
+    });
+  }
+};
+
 module.exports = {
   registerForEvent,
   getMyRegistrations,
   getEventRegistrations,
   updateRegistrationStatus,
+  markAttendance,
 };
